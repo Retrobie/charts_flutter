@@ -1,18 +1,3 @@
-// Copyright 2018 the Charts project authors. Please see the AUTHORS file
-// for details.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-// http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 import 'dart:ui' show TextDirection;
 import 'package:flutter/material.dart'
     show
@@ -35,14 +20,11 @@ import 'widget_layout_delegate.dart';
 class BaseChartState<D> extends State<BaseChart<D>>
     with TickerProviderStateMixin
     implements ChartState {
-  // Animation
   late AnimationController _animationController;
   double _animationValue = 0.0;
 
   BaseChart<D>? _oldWidget;
-
   ChartGestureDetector? _chartGestureDetector;
-
   bool _configurationChanged = false;
 
   final autoBehaviorWidgets = <ChartBehavior<D>>[];
@@ -62,7 +44,7 @@ class BaseChartState<D> extends State<BaseChart<D>>
   @override
   void initState() {
     super.initState();
-    _animationController = new AnimationController(vsync: this)
+    _animationController = AnimationController(vsync: this)
       ..addListener(_animationTick);
   }
 
@@ -91,9 +73,8 @@ class BaseChartState<D> extends State<BaseChart<D>>
     }
   }
 
-  /// Builds the common chart canvas widget.
   Widget _buildChartContainer() {
-    final chartContainer = new ChartContainer<D>(
+    final chartContainer = ChartContainer<D>(
       oldChartWidget: _oldWidget,
       chartWidget: widget,
       chartState: this,
@@ -106,7 +87,7 @@ class BaseChartState<D> extends State<BaseChart<D>>
 
     final desiredGestures = widget.getDesiredGestures(this);
     if (desiredGestures.isNotEmpty) {
-      _chartGestureDetector ??= new ChartGestureDetector();
+      _chartGestureDetector ??= ChartGestureDetector();
       return _chartGestureDetector!
           .makeWidget(context, chartContainer, desiredGestures);
     } else {
@@ -119,11 +100,9 @@ class BaseChartState<D> extends State<BaseChart<D>>
     final chartWidgets = <LayoutId>[];
     final idAndBehaviorMap = <String, BuildableBehavior>{};
 
-    // Add the common chart canvas widget.
-    chartWidgets.add(new LayoutId(
-        id: chartContainerLayoutID, child: _buildChartContainer()));
+    chartWidgets.add(
+        LayoutId(id: chartContainerLayoutID, child: _buildChartContainer()));
 
-    // Add widget for each behavior that can build widgets
     addedCommonBehaviorsByRole.forEach((id, behavior) {
       if (behavior is BuildableBehavior) {
         assert(id != chartContainerLayoutID);
@@ -132,14 +111,14 @@ class BaseChartState<D> extends State<BaseChart<D>>
         idAndBehaviorMap[id] = buildableBehavior;
 
         final widget = buildableBehavior.build(context);
-        chartWidgets.add(new LayoutId(id: id, child: widget));
+        chartWidgets.add(LayoutId(id: id, child: widget));
       }
     });
 
     final isRTL = Directionality.of(context) == TextDirection.rtl;
 
-    return new CustomMultiChildLayout(
-        delegate: new WidgetLayoutDelegate(
+    return CustomMultiChildLayout(
+        delegate: WidgetLayoutDelegate(
             chartContainerLayoutID, idAndBehaviorMap, isRTL),
         children: chartWidgets);
   }
@@ -173,7 +152,7 @@ class BaseChartState<D> extends State<BaseChart<D>>
   /// Get animation controller to be used by [behavior].
   AnimationController getAnimationController(ChartStateBehavior behavior) {
     _behaviorAnimationControllers[behavior] ??=
-        new AnimationController(vsync: this);
+        AnimationController(vsync: this);
 
     return _behaviorAnimationControllers[behavior]!;
   }

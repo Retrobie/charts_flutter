@@ -959,9 +959,11 @@ class LineRenderer<D> extends BaseCartesianRenderer<D> {
             .forEach((area) {
           if (area != null) {
             canvas.drawPolygon(
-                clipBounds: _getClipBoundsForExtent(area.positionExtent),
-                fill: area.areaColor ?? area.color,
-                points: area.points.toPoints());
+              clipBounds: _getClipBoundsForExtent(area.positionExtent),
+              fill: area.areaColor ?? area.color,
+              points: area.points.toPoints(),
+              smoothLine: config.smoothLine,
+            );
           }
         });
       }
@@ -999,6 +1001,7 @@ class LineRenderer<D> extends BaseCartesianRenderer<D> {
                 dashPattern: line.dashPattern,
                 points: line.points!.toPoints(),
                 stroke: line.color,
+                smoothLine: true,
                 strokeWidthPx: line.strokeWidthPx,
                 roundEndCaps: line.roundEndCaps);
           }

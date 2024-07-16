@@ -36,6 +36,7 @@ import 'package:test/test.dart';
 class MyRow {
   final String campaign;
   final int clickCount;
+
   MyRow(this.campaign, this.clickCount);
 }
 
@@ -50,6 +51,7 @@ class MockCanvas extends Mock implements ChartCanvas {
       Rectangle<num> clipBounds,
       Color fill,
       Color stroke,
+      bool smoothLine,
       bool roundEndCaps,
       double strokeWidthPx,
       List<int> dashPattern}) {

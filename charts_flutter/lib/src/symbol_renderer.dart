@@ -52,6 +52,7 @@ class SymbolRendererCanvas implements SymbolRendererBuilder {
 /// a completely custom legend.
 abstract class CustomSymbolRenderer extends common.SymbolRenderer
     implements SymbolRendererBuilder {
+
   CustomSymbolRenderer() : super(isSolid: false);
 
   /// Must override this method to build the custom Widget with the given color

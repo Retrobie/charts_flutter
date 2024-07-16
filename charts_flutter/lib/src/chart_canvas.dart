@@ -45,6 +45,8 @@ class ChartCanvas implements common.ChartCanvas {
   final common.GraphicsFactory graphicsFactory;
   final _paint = new Paint();
 
+  Rectangle<num>? chartAreaBounds;
+
   ChartCanvas(this.canvas, this.graphicsFactory);
 
   @override
@@ -76,6 +78,7 @@ class ChartCanvas implements common.ChartCanvas {
       Rectangle<num>? clipBounds,
       common.Color? fill,
       common.Color? stroke,
+      bool? smoothLine,
       bool? roundEndCaps,
       double? strokeWidthPx,
       List<int>? dashPattern}) {
@@ -86,6 +89,7 @@ class ChartCanvas implements common.ChartCanvas {
         clipBounds: clipBounds,
         fill: fill,
         stroke: stroke,
+        smoothLine: smoothLine,
         roundEndCaps: roundEndCaps,
         strokeWidthPx: strokeWidthPx,
         dashPattern: dashPattern);
@@ -120,7 +124,8 @@ class ChartCanvas implements common.ChartCanvas {
       Rectangle<num>? clipBounds,
       common.Color? fill,
       common.Color? stroke,
-      double? strokeWidthPx}) {
+      double? strokeWidthPx,
+      bool? smoothLine}) {
     PolygonPainter.draw(
         canvas: canvas,
         paint: _paint,
@@ -128,7 +133,8 @@ class ChartCanvas implements common.ChartCanvas {
         clipBounds: clipBounds,
         fill: fill,
         stroke: stroke,
-        strokeWidthPx: strokeWidthPx);
+        strokeWidthPx: strokeWidthPx,
+        smoothLine: smoothLine);
   }
 
   /// Creates a bottom to top gradient that transitions [fill] to transparent.
@@ -150,6 +156,7 @@ class ChartCanvas implements common.ChartCanvas {
       common.Color? stroke,
       double? strokeWidthPx,
       Rectangle<num>? drawAreaBounds}) {
+    this.chartAreaBounds = drawAreaBounds;
     // TODO: remove this explicit `bool` type when no longer needed
     // to work around https://github.com/dart-lang/language/issues/1785
     final bool drawStroke =

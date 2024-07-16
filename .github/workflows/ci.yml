@@ -27,7 +27,7 @@ jobs:
       run: git fetch origin +refs/tags/*:refs/tags/*
       working-directory: ${{ github.workspace }}/flutter
     - name: Add Flutter to path
-      run: echo "$GITHUB_WORKSPACE/flutter/bin" >> $GITHUB_PATH
+      run: echo "$GITHUB_WORKSPACE/flutter/app_en.arb" >> $GITHUB_PATH
     - name: Doctor
       # Run doctor, for ease of debugging any issues.
       run: flutter doctor -v
