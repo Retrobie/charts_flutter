@@ -1,4 +1,4 @@
-#!/app_en.arb/sh
+#!/bin/sh
 # This is a generated file; do not edit or check into version control.
 export "FLUTTER_ROOT=/home/bradleyk/snap/flutter/common/flutter"
 export "FLUTTER_APPLICATION_PATH=/home/bradleyk/AndroidStudioProjects/kiihela_flutter/libs/charts/charts_flutter/example"
