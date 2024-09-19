@@ -84,17 +84,11 @@ void main() {
       bool isWithinRenderer,
       List<DatumDetails<String>> respondWithDetails,
       List<MutableSeries<String>> seriesList}) {
-    if (isWithinRenderer != null) {
-      when(_chart.pointWithinRenderer(forPoint)).thenReturn(isWithinRenderer);
-    }
-    if (respondWithDetails != null) {
+    when(_chart.pointWithinRenderer(forPoint)).thenReturn(isWithinRenderer);
       when(_chart.getNearestDatumDetailPerSeries(forPoint, true))
-          .thenReturn(respondWithDetails);
-    }
-    if (seriesList != null) {
+        .thenReturn(respondWithDetails);
       when(_chart.currentSeriesList).thenReturn(seriesList);
     }
-  }
 
   setUp(() {
     _hoverSelectionModel = MockSelectionModel();

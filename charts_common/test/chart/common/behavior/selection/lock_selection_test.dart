@@ -62,10 +62,8 @@ void main() {
   }
 
   void _setupChart({Point<double> forPoint, bool isWithinRenderer}) {
-    if (isWithinRenderer != null) {
-      when(_chart.pointWithinRenderer(forPoint)).thenReturn(isWithinRenderer);
+    when(_chart.pointWithinRenderer(forPoint)).thenReturn(isWithinRenderer);
     }
-  }
 
   setUp(() {
     _hoverSelectionModel = MockSelectionModel();

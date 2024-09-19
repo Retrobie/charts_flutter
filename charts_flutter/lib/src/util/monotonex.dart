@@ -47,9 +47,6 @@ class MonotoneX {
     targetPoints.add(Point(
         points[points.length - 1].x * 2, points[points.length - 1].y * 2));
     double? x0, y0, x1, y1, t0;
-    if (path == null) {
-      path = Path();
-    }
     List<List<double>> arr = [];
     for (int i = 0; i < targetPoints.length; i++) {
       double? t1;

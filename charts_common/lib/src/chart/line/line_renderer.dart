@@ -519,14 +519,12 @@ class LineRenderer<D> extends BaseCartesianRenderer<D> {
     // Animate out lines that don't exist anymore.
     _seriesLineMap.forEach((String key, List<_AnimatedElements<D>> elements) {
       for (var element in elements) {
-        if (element.lines != null) {
-          for (var line in element.lines) {
-            if (!_currentKeys.contains(line.key)) {
-              line.animateOut();
-            }
+        for (var line in element.lines) {
+          if (!_currentKeys.contains(line.key)) {
+            line.animateOut();
           }
         }
-        if (element.areas != null) {
+              if (element.areas != null) {
           for (var area in element.areas!) {
             if (!_currentKeys.contains(area.key)) {
               area.animateOut();
@@ -957,15 +955,13 @@ class LineRenderer<D> extends BaseCartesianRenderer<D> {
             .map<_AreaRendererElement<D>>((_AnimatedArea<D> animatingArea) =>
                 animatingArea.getCurrentArea(animationPercent))
             .forEach((area) {
-          if (area != null) {
-            canvas.drawPolygon(
-              clipBounds: _getClipBoundsForExtent(area.positionExtent),
-              fill: area.areaColor ?? area.color,
-              points: area.points.toPoints(),
-              smoothLine: config.smoothLine,
-            );
-          }
-        });
+          canvas.drawPolygon(
+            clipBounds: _getClipBoundsForExtent(area.positionExtent),
+            fill: area.areaColor ?? area.color,
+            points: area.points.toPoints(),
+            smoothLine: config.smoothLine,
+          );
+                });
       }
 
       if (_hasMeasureBounds) {
@@ -977,13 +973,11 @@ class LineRenderer<D> extends BaseCartesianRenderer<D> {
             .map<_AreaRendererElement<D>>((_AnimatedArea<D> animatingBounds) =>
                 animatingBounds.getCurrentArea(animationPercent))
             .forEach((bound) {
-          if (bound != null) {
-            canvas.drawPolygon(
-                clipBounds: _getClipBoundsForExtent(bound.positionExtent),
-                fill: bound.areaColor ?? bound.color,
-                points: bound.points.toPoints());
-          }
-        });
+          canvas.drawPolygon(
+              clipBounds: _getClipBoundsForExtent(bound.positionExtent),
+              fill: bound.areaColor ?? bound.color,
+              points: bound.points.toPoints());
+                });
       }
 
       if (config.includeLine) {
@@ -995,17 +989,15 @@ class LineRenderer<D> extends BaseCartesianRenderer<D> {
             .map<_LineRendererElement<D>>((_AnimatedLine<D> animatingLine) =>
                 animatingLine.getCurrentLine(animationPercent))
             .forEach((line) {
-          if (line != null) {
-            canvas.drawLine(
-                clipBounds: _getClipBoundsForExtent(line.positionExtent!),
-                dashPattern: line.dashPattern,
-                points: line.points!.toPoints(),
-                stroke: line.color,
-                smoothLine: true,
-                strokeWidthPx: line.strokeWidthPx,
-                roundEndCaps: line.roundEndCaps);
-          }
-        });
+          canvas.drawLine(
+              clipBounds: _getClipBoundsForExtent(line.positionExtent!),
+              dashPattern: line.dashPattern,
+              points: line.points!.toPoints(),
+              stroke: line.color,
+              smoothLine: true,
+              strokeWidthPx: line.strokeWidthPx,
+              roundEndCaps: line.roundEndCaps);
+                });
       }
     });
 
@@ -1587,12 +1579,10 @@ class _AnimatedElements<D> {
     }
 
     var linesAnimatingOut = true;
-    if (lines != null) {
-      for (final line in lines) {
-        linesAnimatingOut = linesAnimatingOut && line.animatingOut;
-      }
+    for (final line in lines) {
+      linesAnimatingOut = linesAnimatingOut && line.animatingOut;
     }
-
+  
     var boundsAnimatingOut = true;
     if (bounds != null) {
       for (final bound in bounds!) {
@@ -1612,12 +1602,10 @@ class _AnimatedElements<D> {
     }
 
     var linesOverlaySeries = true;
-    if (lines != null) {
-      for (final line in lines) {
-        linesOverlaySeries = linesOverlaySeries && line.overlaySeries;
-      }
+    for (final line in lines) {
+      linesOverlaySeries = linesOverlaySeries && line.overlaySeries;
     }
-
+  
     var boundsOverlaySeries = true;
     if (bounds != null) {
       for (final bound in bounds!) {
