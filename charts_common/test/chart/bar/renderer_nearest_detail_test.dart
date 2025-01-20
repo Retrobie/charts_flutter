@@ -1,5 +1,3 @@
-// @dart=2.9
-
 // Copyright 2018 the Charts project authors. Please see the AUTHORS file
 // for details.
 //
@@ -87,7 +85,7 @@ void main() {
     return renderer;
   }
 
-  BaseBarRenderer _makeBarRenderer({bool vertical, BarGroupingType groupType}) {
+  BaseBarRenderer _makeBarRenderer({required bool vertical, required BarGroupingType groupType}) {
     final renderer =
         BarRenderer(config: BarRendererConfig(groupingType: groupType));
     _configureBaseRenderer(renderer, vertical);
@@ -95,7 +93,7 @@ void main() {
   }
 
   BaseBarRenderer _makeBarTargetRenderer(
-      {bool vertical, BarGroupingType groupType}) {
+      {required bool vertical, required BarGroupingType groupType}) {
     final renderer = BarTargetLineRenderer(
         config: BarTargetLineRendererConfig(groupingType: groupType));
     _configureBaseRenderer(renderer, vertical);
@@ -103,7 +101,7 @@ void main() {
   }
 
   MutableSeries _makeSeries(
-      {String id, String seriesCategory, bool vertical = true}) {
+      {required String id, String? seriesCategory, bool vertical = true}) {
     final data = <MyRow>[
       MyRow('camp0', 10),
       MyRow('camp1', 10),
@@ -159,7 +157,7 @@ void main() {
   }
 
   MutableSeries _makeDateTimeSeries(
-      {String id, String seriesCategory, bool vertical = true}) {
+      {required String id, String? seriesCategory, bool vertical = true}) {
     final data = <MyDateTimeRow>[
       MyDateTimeRow(date0, 10),
       MyDateTimeRow(date1, 10),
@@ -203,7 +201,7 @@ void main() {
     return series;
   }
 
-  bool selectNearestByDomain;
+  bool selectNearestByDomain = false;
 
   setUp(() {
     selectNearestByDomain = true;
@@ -237,7 +235,7 @@ void main() {
 
       final closest = details[0];
       expect(closest.domain, equals('camp0'));
-      expect(closest.series.id, equals('bar'));
+      expect(closest.series?.id, equals('bar'));
       expect(closest.datum, equals(seriesList[1].data[0]));
       expect(closest.domainDistance, equals(31)); // 2 + 49 - 20
       expect(closest.measureDistance, equals(0));
@@ -290,7 +288,7 @@ void main() {
 
       final closest = details[0];
       expect(closest.domain, equals('camp0'));
-      expect(closest.series.id, equals('bar'));
+      expect(closest.series?.id, equals('bar'));
       expect(closest.datum, equals(seriesList[1].data[0]));
       expect(closest.domainDistance, equals(31)); // 2 + 49 - 20
       expect(closest.measureDistance, equals(0));
@@ -374,14 +372,14 @@ void main() {
 
       final closest = details[0];
       expect(closest.domain, equals('camp0'));
-      expect(closest.series.id, equals('foo'));
+      expect(closest.series?.id, equals('foo'));
       expect(closest.datum, equals(seriesList[0].data[0]));
       expect(closest.domainDistance, equals(0));
       expect(closest.measureDistance, equals(0));
 
       final next = details[1];
       expect(next.domain, equals('camp0'));
-      expect(next.series.id, equals('bar'));
+      expect(next.series?.id, equals('bar'));
       expect(next.datum, equals(seriesList[1].data[0]));
       expect(next.domainDistance, equals(31)); // 2 + 49 - 20
       expect(next.measureDistance, equals(0));
@@ -412,14 +410,14 @@ void main() {
       // For vertical stacked bars, the first series is at the top of the stack.
       final closest = details[0];
       expect(closest.domain, equals('camp0'));
-      expect(closest.series.id, equals('bar'));
+      expect(closest.series?.id, equals('bar'));
       expect(closest.datum, equals(seriesList[1].data[0]));
       expect(closest.domainDistance, equals(0));
       expect(closest.measureDistance, equals(0));
 
       final next = details[1];
       expect(next.domain, equals('camp0'));
-      expect(next.series.id, equals('foo'));
+      expect(next.series?.id, equals('foo'));
       expect(next.datum, equals(seriesList[0].data[0]));
       expect(next.domainDistance, equals(0));
       expect(next.measureDistance, equals(5.0));
@@ -452,28 +450,28 @@ void main() {
       // For vertical stacked bars, the first series is at the top of the stack.
       final closest = details[0];
       expect(closest.domain, equals('camp0'));
-      expect(closest.series.id, equals('bar0'));
+      expect(closest.series?.id, equals('bar0'));
       expect(closest.datum, equals(seriesList[1].data[0]));
       expect(closest.domainDistance, equals(0));
       expect(closest.measureDistance, equals(0));
 
       final other1 = details[1];
       expect(other1.domain, equals('camp0'));
-      expect(other1.series.id, equals('foo0'));
+      expect(other1.series?.id, equals('foo0'));
       expect(other1.datum, equals(seriesList[0].data[0]));
       expect(other1.domainDistance, equals(0));
       expect(other1.measureDistance, equals(5));
 
       var other2 = details[2];
       expect(other2.domain, equals('camp0'));
-      expect(other2.series.id, equals('bar1'));
+      expect(other2.series?.id, equals('bar1'));
       expect(other2.datum, equals(seriesList[3].data[0]));
       expect(other2.domainDistance, equals(31)); // 2 + 49 - 20
       expect(other2.measureDistance, equals(0));
 
       var other3 = details[3];
       expect(other3.domain, equals('camp0'));
-      expect(other3.series.id, equals('foo1'));
+      expect(other3.series?.id, equals('foo1'));
       expect(other3.datum, equals(seriesList[2].data[0]));
       expect(other3.domainDistance, equals(31)); // 2 + 49 - 20
       expect(other3.measureDistance, equals(5));
@@ -527,14 +525,14 @@ void main() {
 
       final closest = details[0];
       expect(closest.domain, equals('camp0'));
-      expect(closest.series.id, equals('foo'));
+      expect(closest.series?.id, equals('foo'));
       expect(closest.datum, equals(seriesList[0].data[0]));
       expect(closest.domainDistance, equals(1));
       expect(closest.measureDistance, equals(0));
 
       final next = details[1];
       expect(next.domain, equals('camp0'));
-      expect(next.series.id, equals('bar'));
+      expect(next.series?.id, equals('bar'));
       expect(next.datum, equals(seriesList[1].data[0]));
       expect(next.domainDistance, equals(1));
       expect(next.measureDistance, equals(0));
@@ -618,14 +616,14 @@ void main() {
 
       final closest = details[0];
       expect(closest.domain, equals('camp0'));
-      expect(closest.series.id, equals('foo'));
+      expect(closest.series?.id, equals('foo'));
       expect(closest.datum, equals(seriesList[0].data[0]));
       expect(closest.domainDistance, equals(0));
       expect(closest.measureDistance, equals(0));
 
       final next = details[1];
       expect(next.domain, equals('camp0'));
-      expect(next.series.id, equals('bar'));
+      expect(next.series?.id, equals('bar'));
       expect(next.datum, equals(seriesList[1].data[0]));
       expect(next.domainDistance, equals(31)); // 2 + 49 - 20
       expect(next.measureDistance, equals(0));
@@ -655,14 +653,14 @@ void main() {
 
       final closest = details[0];
       expect(closest.domain, equals('camp0'));
-      expect(closest.series.id, equals('foo'));
+      expect(closest.series?.id, equals('foo'));
       expect(closest.datum, equals(seriesList[0].data[0]));
       expect(closest.domainDistance, equals(0));
       expect(closest.measureDistance, equals(0));
 
       final next = details[1];
       expect(next.domain, equals('camp0'));
-      expect(next.series.id, equals('bar'));
+      expect(next.series?.id, equals('bar'));
       expect(next.datum, equals(seriesList[1].data[0]));
       expect(next.domainDistance, equals(0));
       expect(next.measureDistance, equals(5.0));
@@ -694,28 +692,28 @@ void main() {
 
       final closest = details[0];
       expect(closest.domain, equals('camp0'));
-      expect(closest.series.id, equals('foo0'));
+      expect(closest.series?.id, equals('foo0'));
       expect(closest.datum, equals(seriesList[0].data[0]));
       expect(closest.domainDistance, equals(0));
       expect(closest.measureDistance, equals(0));
 
       final other1 = details[1];
       expect(other1.domain, equals('camp0'));
-      expect(other1.series.id, equals('bar0'));
+      expect(other1.series?.id, equals('bar0'));
       expect(other1.datum, equals(seriesList[1].data[0]));
       expect(other1.domainDistance, equals(0));
       expect(other1.measureDistance, equals(5));
 
       var other2 = details[2];
       expect(other2.domain, equals('camp0'));
-      expect(other2.series.id, equals('foo1'));
+      expect(other2.series?.id, equals('foo1'));
       expect(other2.datum, equals(seriesList[2].data[0]));
       expect(other2.domainDistance, equals(31)); // 2 + 49 - 20
       expect(other2.measureDistance, equals(0));
 
       var other3 = details[3];
       expect(other3.domain, equals('camp0'));
-      expect(other3.series.id, equals('bar1'));
+      expect(other3.series?.id, equals('bar1'));
       expect(other3.datum, equals(seriesList[3].data[0]));
       expect(other3.domainDistance, equals(31)); // 2 + 49 - 20
       expect(other3.measureDistance, equals(5));
@@ -773,14 +771,14 @@ void main() {
 
       final closest = details[0];
       expect(closest.domain, equals('camp0'));
-      expect(closest.series.id, equals('foo'));
+      expect(closest.series?.id, equals('foo'));
       expect(closest.datum, equals(seriesList[0].data[0]));
       expect(closest.domainDistance, equals(1));
       expect(closest.measureDistance, equals(0));
 
       final next = details[1];
       expect(next.domain, equals('camp0'));
-      expect(next.series.id, equals('bar'));
+      expect(next.series?.id, equals('bar'));
       expect(next.datum, equals(seriesList[1].data[0]));
       expect(next.domainDistance, equals(1));
       expect(next.measureDistance, equals(0));
@@ -839,14 +837,14 @@ void main() {
 
       final closest = details[0];
       expect(closest.domain, equals('camp0'));
-      expect(closest.series.id, equals('foo'));
+      expect(closest.series?.id, equals('foo'));
       expect(closest.datum, equals(seriesList[0].data[0]));
       expect(closest.domainDistance, equals(0));
       expect(closest.measureDistance, equals(5));
 
       final next = details[1];
       expect(next.domain, equals('camp0'));
-      expect(next.series.id, equals('bar'));
+      expect(next.series?.id, equals('bar'));
       expect(next.datum, equals(seriesList[1].data[0]));
       expect(next.domainDistance, equals(31)); // 2 + 49 - 20
       expect(next.measureDistance, equals(5));
@@ -877,14 +875,14 @@ void main() {
       // For vertical stacked bars, the first series is at the top of the stack.
       final closest = details[0];
       expect(closest.domain, equals('camp0'));
-      expect(closest.series.id, equals('bar'));
+      expect(closest.series?.id, equals('bar'));
       expect(closest.datum, equals(seriesList[1].data[0]));
       expect(closest.domainDistance, equals(0));
       expect(closest.measureDistance, equals(5));
 
       final next = details[1];
       expect(next.domain, equals('camp0'));
-      expect(next.series.id, equals('foo'));
+      expect(next.series?.id, equals('foo'));
       expect(next.datum, equals(seriesList[0].data[0]));
       expect(next.domainDistance, equals(0));
       expect(next.measureDistance, equals(15.0));
@@ -917,28 +915,28 @@ void main() {
       // For vertical stacked bars, the first series is at the top of the stack.
       final closest = details[0];
       expect(closest.domain, equals('camp0'));
-      expect(closest.series.id, equals('bar0'));
+      expect(closest.series?.id, equals('bar0'));
       expect(closest.datum, equals(seriesList[1].data[0]));
       expect(closest.domainDistance, equals(0));
       expect(closest.measureDistance, equals(5));
 
       final other1 = details[1];
       expect(other1.domain, equals('camp0'));
-      expect(other1.series.id, equals('foo0'));
+      expect(other1.series?.id, equals('foo0'));
       expect(other1.datum, equals(seriesList[0].data[0]));
       expect(other1.domainDistance, equals(0));
       expect(other1.measureDistance, equals(15));
 
       var other2 = details[2];
       expect(other2.domain, equals('camp0'));
-      expect(other2.series.id, equals('bar1'));
+      expect(other2.series?.id, equals('bar1'));
       expect(other2.datum, equals(seriesList[3].data[0]));
       expect(other2.domainDistance, equals(31)); // 2 + 49 - 20
       expect(other2.measureDistance, equals(5));
 
       var other3 = details[3];
       expect(other3.domain, equals('camp0'));
-      expect(other3.series.id, equals('foo1'));
+      expect(other3.series?.id, equals('foo1'));
       expect(other3.datum, equals(seriesList[2].data[0]));
       expect(other3.domainDistance, equals(31)); // 2 + 49 - 20
       expect(other3.measureDistance, equals(15));
@@ -968,14 +966,14 @@ void main() {
 
       final closest = details[0];
       expect(closest.domain, equals('camp0'));
-      expect(closest.series.id, equals('foo'));
+      expect(closest.series?.id, equals('foo'));
       expect(closest.datum, equals(seriesList[0].data[0]));
       expect(closest.domainDistance, equals(1));
       expect(closest.measureDistance, equals(5));
 
       final next = details[1];
       expect(next.domain, equals('camp0'));
-      expect(next.series.id, equals('bar'));
+      expect(next.series?.id, equals('bar'));
       expect(next.datum, equals(seriesList[1].data[0]));
       expect(next.domainDistance, equals(1));
       expect(next.measureDistance, equals(5));
@@ -1059,14 +1057,14 @@ void main() {
 
       final closest = details[0];
       expect(closest.domain, equals('camp0'));
-      expect(closest.series.id, equals('foo'));
+      expect(closest.series?.id, equals('foo'));
       expect(closest.datum, equals(seriesList[0].data[0]));
       expect(closest.domainDistance, equals(0));
       expect(closest.measureDistance, equals(5));
 
       final next = details[1];
       expect(next.domain, equals('camp0'));
-      expect(next.series.id, equals('bar'));
+      expect(next.series?.id, equals('bar'));
       expect(next.datum, equals(seriesList[1].data[0]));
       expect(next.domainDistance, equals(31)); // 2 + 49 - 20
       expect(next.measureDistance, equals(5));
@@ -1096,14 +1094,14 @@ void main() {
 
       final closest = details[0];
       expect(closest.domain, equals('camp0'));
-      expect(closest.series.id, equals('foo'));
+      expect(closest.series?.id, equals('foo'));
       expect(closest.datum, equals(seriesList[0].data[0]));
       expect(closest.domainDistance, equals(0));
       expect(closest.measureDistance, equals(5));
 
       final next = details[1];
       expect(next.domain, equals('camp0'));
-      expect(next.series.id, equals('bar'));
+      expect(next.series?.id, equals('bar'));
       expect(next.datum, equals(seriesList[1].data[0]));
       expect(next.domainDistance, equals(0));
       expect(next.measureDistance, equals(15));
@@ -1135,28 +1133,28 @@ void main() {
 
       final closest = details[0];
       expect(closest.domain, equals('camp0'));
-      expect(closest.series.id, equals('foo0'));
+      expect(closest.series?.id, equals('foo0'));
       expect(closest.datum, equals(seriesList[0].data[0]));
       expect(closest.domainDistance, equals(0));
       expect(closest.measureDistance, equals(5));
 
       final other1 = details[1];
       expect(other1.domain, equals('camp0'));
-      expect(other1.series.id, equals('bar0'));
+      expect(other1.series?.id, equals('bar0'));
       expect(other1.datum, equals(seriesList[1].data[0]));
       expect(other1.domainDistance, equals(0));
       expect(other1.measureDistance, equals(15));
 
       var other2 = details[2];
       expect(other2.domain, equals('camp0'));
-      expect(other2.series.id, equals('foo1'));
+      expect(other2.series?.id, equals('foo1'));
       expect(other2.datum, equals(seriesList[2].data[0]));
       expect(other2.domainDistance, equals(31)); // 2 + 49 - 20
       expect(other2.measureDistance, equals(5));
 
       var other3 = details[3];
       expect(other3.domain, equals('camp0'));
-      expect(other3.series.id, equals('bar1'));
+      expect(other3.series?.id, equals('bar1'));
       expect(other3.datum, equals(seriesList[3].data[0]));
       expect(other3.domainDistance, equals(31)); // 2 + 49 - 20
       expect(other3.measureDistance, equals(15));
@@ -1186,14 +1184,14 @@ void main() {
 
       final closest = details[0];
       expect(closest.domain, equals('camp0'));
-      expect(closest.series.id, equals('foo'));
+      expect(closest.series?.id, equals('foo'));
       expect(closest.datum, equals(seriesList[0].data[0]));
       expect(closest.domainDistance, equals(1));
       expect(closest.measureDistance, equals(5));
 
       final next = details[1];
       expect(next.domain, equals('camp0'));
-      expect(next.series.id, equals('bar'));
+      expect(next.series?.id, equals('bar'));
       expect(next.datum, equals(seriesList[1].data[0]));
       expect(next.domainDistance, equals(1));
       expect(next.measureDistance, equals(5));
@@ -1254,14 +1252,14 @@ void main() {
 
       final closest = details[0];
       expect(closest.domain, equals(date0));
-      expect(closest.series.id, equals('foo'));
+      expect(closest.series?.id, equals('foo'));
       expect(closest.datum, equals(seriesList[0].data[0]));
       expect(closest.domainDistance, equals(0));
       expect(closest.measureDistance, equals(0));
 
       final next = details[1];
       expect(next.domain, equals(date0));
-      expect(next.series.id, equals('bar'));
+      expect(next.series?.id, equals('bar'));
       expect(next.datum, equals(seriesList[1].data[0]));
       expect(next.domainDistance, equals(31)); // 2 + 49 - 20
       expect(next.measureDistance, equals(0));
@@ -1292,14 +1290,14 @@ void main() {
       // For vertical stacked bars, the first series is at the top of the stack.
       final closest = details[0];
       expect(closest.domain, equals(date0));
-      expect(closest.series.id, equals('bar'));
+      expect(closest.series?.id, equals('bar'));
       expect(closest.datum, equals(seriesList[1].data[0]));
       expect(closest.domainDistance, equals(0));
       expect(closest.measureDistance, equals(5));
 
       final next = details[1];
       expect(next.domain, equals(date0));
-      expect(next.series.id, equals('foo'));
+      expect(next.series?.id, equals('foo'));
       expect(next.datum, equals(seriesList[0].data[0]));
       expect(next.domainDistance, equals(0));
       expect(next.measureDistance, equals(15.0));
@@ -1332,28 +1330,28 @@ void main() {
       // For vertical stacked bars, the first series is at the top of the stack.
       final closest = details[0];
       expect(closest.domain, equals(date0));
-      expect(closest.series.id, equals('bar0'));
+      expect(closest.series?.id, equals('bar0'));
       expect(closest.datum, equals(seriesList[1].data[0]));
       expect(closest.domainDistance, equals(0));
       expect(closest.measureDistance, equals(5));
 
       final other1 = details[1];
       expect(other1.domain, equals(date0));
-      expect(other1.series.id, equals('foo0'));
+      expect(other1.series?.id, equals('foo0'));
       expect(other1.datum, equals(seriesList[0].data[0]));
       expect(other1.domainDistance, equals(0));
       expect(other1.measureDistance, equals(15));
 
       var other2 = details[2];
       expect(other2.domain, equals(date0));
-      expect(other2.series.id, equals('bar1'));
+      expect(other2.series?.id, equals('bar1'));
       expect(other2.datum, equals(seriesList[3].data[0]));
       expect(other2.domainDistance, equals(31)); // 2 + 49 - 20
       expect(other2.measureDistance, equals(5));
 
       var other3 = details[3];
       expect(other3.domain, equals(date0));
-      expect(other3.series.id, equals('foo1'));
+      expect(other3.series?.id, equals('foo1'));
       expect(other3.datum, equals(seriesList[2].data[0]));
       expect(other3.domainDistance, equals(31)); // 2 + 49 - 20
       expect(other3.measureDistance, equals(15));
@@ -1383,14 +1381,14 @@ void main() {
 
       final closest = details[0];
       expect(closest.domain, equals(date0));
-      expect(closest.series.id, equals('foo'));
+      expect(closest.series?.id, equals('foo'));
       expect(closest.datum, equals(seriesList[0].data[0]));
       expect(closest.domainDistance, equals(1));
       expect(closest.measureDistance, equals(5));
 
       final next = details[1];
       expect(next.domain, equals(date0));
-      expect(next.series.id, equals('bar'));
+      expect(next.series?.id, equals('bar'));
       expect(next.datum, equals(seriesList[1].data[0]));
       expect(next.domainDistance, equals(1));
       expect(next.measureDistance, equals(5));

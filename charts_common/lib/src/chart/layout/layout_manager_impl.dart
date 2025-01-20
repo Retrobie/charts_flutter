@@ -263,8 +263,9 @@ class LayoutManagerImpl implements LayoutManager {
         .layout(topViews, _measurements.topSizes, fullBounds, drawAreaBounds);
 
     // Layout the drawArea.
-    drawAreaViews.forEach(
-        (LayoutView view) => view.layout(_drawAreaBounds, _drawAreaBounds));
+    for (var view in drawAreaViews) {
+      view.layout(_drawAreaBounds, _drawAreaBounds);
+    }
   }
 
   Iterable<LayoutView> _viewsForPositions(LayoutPosition p1,

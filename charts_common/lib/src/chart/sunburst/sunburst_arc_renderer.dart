@@ -510,7 +510,7 @@ class SunburstArcRenderer<D> extends BaseArcRenderer<D> {
       [int maxDisplayLevel = 1, int currentLevel = 1]) {
     // arcRatio trumps arcWidth for determining the inner radius. If neither is
     // defined, then inner radius is 0.
-    final baseInnerRadius;
+    final double baseInnerRadius;
     if (config.arcRatio != null) {
       baseInnerRadius = max(radius - radius * config.arcRatio!, 0.0).toDouble();
     } else if (config.arcWidth != null) {
@@ -534,9 +534,9 @@ class SunburstArcRenderer<D> extends BaseArcRenderer<D> {
       ];
     } else {
       final totalRadius = radius - baseInnerRadius;
-      final radiusDenom;
-      final sumOfPreviousLevelRadiiFactor;
-      final currentLevelRadiusFactor;
+      final int radiusDenom;
+      final int sumOfPreviousLevelRadiiFactor;
+      final int currentLevelRadiusFactor;
       // If arcRatios is defined, calculate inner and outer radius based on it.
       if (config.arcRatios != null && config.arcRatios!.isNotEmpty) {
         List<int> arcRatios = _ensureConfigLengthCoversMaxDisplayLevel(

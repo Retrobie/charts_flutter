@@ -1,5 +1,3 @@
-// @dart=2.9
-
 // Copyright 2018 the Charts project authors. Please see the AUTHORS file
 // for details.
 //
@@ -32,9 +30,9 @@ import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
 class MockChart extends Mock implements CartesianChart {
-  GestureListener lastGestureListener;
+  GestureListener? lastGestureListener;
 
-  LifecycleListener lastLifecycleListener;
+  LifecycleListener? lastLifecycleListener;
 
   @override
   bool vertical = true;
@@ -70,27 +68,27 @@ class MockDomainAxis extends Mock implements NumericAxis {
   }
 
   @override
-  double getLocation(num domain) {
-    return (domain * 20.0).toDouble();
+  double? getLocation(num? domain) {
+    return (domain! * 20.0).toDouble();
   }
 }
 
 void main() {
-  MockChart _chart;
-  MockDomainAxis _domainAxis;
-  MockDomainAxis _measureAxis;
-  ImmutableSeries _series1;
-  DatumDetails _details1;
-  DatumDetails _details2;
-  DatumDetails _details3;
+  late MockChart _chart;
+  late MockDomainAxis _domainAxis;
+  late MockDomainAxis _measureAxis;
+  late ImmutableSeries _series1;
+  late DatumDetails _details1;
+  late DatumDetails _details2;
+  late DatumDetails _details3;
 
   SliderTester tester;
 
   Slider _makeBehavior(SelectionTrigger eventTrigger,
-      {Point<double> handleOffset,
-      Rectangle<int> handleSize,
-      double initialDomainValue,
-      SliderListenerCallback onChangeCallback,
+      {required Point<double> handleOffset,
+      Rectangle<int>? handleSize,
+      double? initialDomainValue,
+      SliderListenerCallback? onChangeCallback,
       bool snapToDatum = false,
       SliderHandlePosition handlePosition = SliderHandlePosition.middle}) {
     Slider behavior = Slider(
@@ -113,7 +111,7 @@ void main() {
   }
 
   void _setupChart(
-      {Point<double> forPoint,
+      {required Point<double> forPoint,
       bool isWithinRenderer,
       List<DatumDetails> respondWithDetails}) {
     when(_chart.domainAxis).thenReturn(_domainAxis);
@@ -566,7 +564,7 @@ void main() {
       _setupChart();
 
       // Act
-      _chart.lastLifecycleListener.onAxisConfigured();
+      _chart.lastLifecycleListener.onAxisConfigured!();
 
       // Verify initial position.
       expect(tester.domainCenterPoint, equals(Point(20.0, 100.0)));

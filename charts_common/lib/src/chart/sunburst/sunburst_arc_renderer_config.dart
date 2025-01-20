@@ -77,8 +77,8 @@ class SunburstArcRendererConfig<D> extends BaseArcRendererConfig<D> {
       double startAngle = -pi / 2,
       double strokeWidthPx = 2.0,
       SymbolRenderer? symbolRenderer})
-      : this.maxDisplayLevel = maxDisplayLevel ?? _maxInt32Value,
-        this.initialDisplayLevel =
+      : maxDisplayLevel = maxDisplayLevel ?? _maxInt32Value,
+        initialDisplayLevel =
             initialDisplayLevel ?? maxDisplayLevel ?? _maxInt32Value,
         super(
             customRendererId: customRendererId,

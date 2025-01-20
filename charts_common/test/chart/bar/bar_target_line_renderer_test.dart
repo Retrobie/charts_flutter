@@ -1,5 +1,3 @@
-// @dart=2.9
-
 // Copyright 2018 the Charts project authors. Please see the AUTHORS file
 // for details.
 //
@@ -216,13 +214,13 @@ void main() {
       expect(series.getAttr(stackKeyKey), equals('__defaultKey__'));
 
       var elementsList = series.getAttr(barElementsKey);
-      expect(elementsList.length, equals(4));
+      expect(elementsList?.length, equals(4));
 
-      var element = elementsList[0];
+      var element = elementsList![0];
       expect(element.barStackIndex, equals(2));
       expect(element.measureOffset, equals(10));
       expect(element.measureOffsetPlusMeasure, equals(15));
-      expect(series.measureOffsetFn(0), equals(10));
+      expect(series.measureOffsetFn!(0), equals(10));
       expect(element.strokeWidthPx, equals(3));
 
       // Validate Tablet series.
@@ -234,13 +232,13 @@ void main() {
       expect(series.getAttr(stackKeyKey), equals('__defaultKey__'));
 
       elementsList = series.getAttr(barElementsKey);
-      expect(elementsList.length, equals(4));
+      expect(elementsList?.length, equals(4));
 
-      element = elementsList[0];
+      element = elementsList![0];
       expect(element.barStackIndex, equals(1));
       expect(element.measureOffset, equals(5));
       expect(element.measureOffsetPlusMeasure, equals(10));
-      expect(series.measureOffsetFn(0), equals(5));
+      expect(series.measureOffsetFn!(0), equals(5));
       expect(element.strokeWidthPx, equals(3));
 
       // Validate Mobile series.
@@ -252,13 +250,13 @@ void main() {
       expect(series.getAttr(stackKeyKey), equals('__defaultKey__'));
 
       elementsList = series.getAttr(barElementsKey);
-      expect(elementsList.length, equals(4));
+      expect(elementsList?.length, equals(4));
 
-      element = elementsList[0];
+      element = elementsList![0];
       expect(element.barStackIndex, equals(0));
       expect(element.measureOffset, equals(0));
       expect(element.measureOffsetPlusMeasure, equals(5));
-      expect(series.measureOffsetFn(0), equals(0));
+      expect(series.measureOffsetFn!(0), equals(0));
       expect(element.strokeWidthPx, equals(3));
     });
 

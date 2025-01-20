@@ -25,7 +25,7 @@ class ScatterPlotAnimationZoomChart extends StatelessWidget {
   final List<charts.Series<dynamic, num>> seriesList;
   final bool animate;
 
-  ScatterPlotAnimationZoomChart(this.seriesList, {this.animate = false});
+  const ScatterPlotAnimationZoomChart(this.seriesList, {Key? key, this.animate = false}) : super(key: key);
 
   /// Creates a [ScatterPlotChart] with sample data and no transition.
   factory ScatterPlotAnimationZoomChart.withSampleData() {
