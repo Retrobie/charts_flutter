@@ -16,7 +16,7 @@
 import 'dart:collection' show Queue;
 import 'dart:math' as math;
 
-import 'package:charts_common/src/data/tree.dart';
+import 'package:charts_common/domain/data/tree.dart';
 
 import 'base_treemap_renderer.dart';
 import 'treemap_renderer_config.dart';
@@ -42,7 +42,7 @@ class SquarifiedTreeMapRenderer<D> extends BaseTreeMapRenderer<D> {
   /// Squarified Treemaps:
   /// https://www.win.tue.nl/~vanwijk/stm.pdf
   /// Squarify algorithm from Charted:
-  /// https://github.com/google/charted/blob/948ba890fc75e985b80ad0fc826cfc13ff55b633/lib/layout/src/treemap_layout.dart#L156
+  /// https://github.com/google/charted/blob/948ba890fc75e985b80ad0fc826cfc13ff55b633/lib/layout/domain/treemap_layout.dart#L156
   @override
   void tile(TreeNode<Object> node) {
     final children = node.children;

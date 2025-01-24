@@ -15,8 +15,8 @@
 
 import 'package:charts_common/common.dart';
 import 'package:test/test.dart';
-import 'package:charts_common/src/data/graph_utils.dart';
-import 'package:charts_common/src/data/graph.dart' as graph_structure
+import 'package:charts_common/domain/data/graph_utils.dart';
+import 'package:charts_common/domain/data/graph.dart' as graph_structure
     show Node, Link, indexNotRelevant;
 
 class MyNode {

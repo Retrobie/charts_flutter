@@ -272,7 +272,7 @@ abstract class KeyboardDomainNavigator<D> implements ChartBehavior<D> {
         detailsByDomain[domain]!
             .add(SeriesDatum<D>(datumDetails.series!, datumDetails.datum));
       }
-      // LINT.ThenChange(//depot/google3/third_party/dart/charts_web/lib/src/common/behaviors/hovercard/hovercard.dart)
+      // LINT.ThenChange(//depot/google3/third_party/dart/charts_web/lib/domain/common/behaviors/hovercard/hovercard.dart)
     }
 
     _datumPairs = <int, List<SeriesDatum<D>>>{};

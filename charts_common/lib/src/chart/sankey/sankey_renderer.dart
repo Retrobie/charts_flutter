@@ -15,12 +15,12 @@
 
 import 'dart:math' show Point, Rectangle;
 
-import 'package:charts_common/src/chart/common/chart_canvas.dart';
-import 'package:charts_common/src/chart/common/datum_details.dart';
-import 'package:charts_common/src/chart/common/processed_series.dart';
-import 'package:charts_common/src/chart/common/series_datum.dart';
-import 'package:charts_common/src/chart/common/series_renderer.dart';
-import 'package:charts_common/src/common/math.dart' show NullablePoint;
+import 'package:charts_common/domain/chart/common/chart_canvas.dart';
+import 'package:charts_common/domain/chart/common/datum_details.dart';
+import 'package:charts_common/domain/chart/common/processed_series.dart';
+import 'package:charts_common/domain/chart/common/series_datum.dart';
+import 'package:charts_common/domain/chart/common/series_renderer.dart';
+import 'package:charts_common/domain/common/math.dart' show NullablePoint;
 
 import 'sankey_renderer_config.dart';
 

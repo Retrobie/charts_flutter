@@ -15,11 +15,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'package:charts_common/src/common/text_element.dart';
-import 'package:charts_common/src/common/text_measurement.dart';
-import 'package:charts_common/src/common/text_style.dart';
-import 'package:charts_common/src/chart/cartesian/axis/axis_tick.dart';
-import 'package:charts_common/src/chart/cartesian/axis/tick.dart';
+import 'package:charts_common/domain/common/text_element.dart';
+import 'package:charts_common/domain/common/text_measurement.dart';
+import 'package:charts_common/domain/common/text_style.dart';
+import 'package:charts_common/domain/chart/cartesian/axis/axis_tick.dart';
+import 'package:charts_common/domain/chart/cartesian/axis/tick.dart';
 import 'package:test/test.dart';
 
 /// Fake [TextElement] for testing.

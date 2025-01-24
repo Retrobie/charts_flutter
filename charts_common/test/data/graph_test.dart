@@ -14,7 +14,7 @@
 // limitations under the License.
 
 import 'package:charts_common/common.dart';
-import 'package:charts_common/src/data/graph.dart' as graph_structure
+import 'package:charts_common/domain/data/graph.dart' as graph_structure
     show indexNotRelevant, Link, Node;
 import 'package:test/test.dart';
 
